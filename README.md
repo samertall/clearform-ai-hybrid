@@ -6,6 +6,9 @@ ClearForm AI is an accessible, privacy-conscious web app that helps people under
 
 Created November 9, 2026 for the [Google #BuildHybridAI 2026 challenge](https://firebasehybridaihackathon.devpost.com/).
 
+**Public demo:** https://clearform-ai-2026.usefulotter1.chatgpt.site  
+**Source:** https://github.com/samertall/clearform-ai-hybrid
+
 ## Key features
 
 - Hybrid Firebase AI Logic integration using PREFER_ON_DEVICE mode and cloud fallback.

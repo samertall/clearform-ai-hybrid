@@ -32,6 +32,7 @@ export default function Home() {
   const [view, setView] = useState<"workspace" | "history">("workspace");
   const [history, setHistory] = useState<SavedItem[]>([]);
   const [connection, setConnection] = useState<FirebaseConnection | null>(null);
+  const [allowCloudFallback, setAllowCloudFallback] = useState(false);
   const [configText, setConfigText] = useState("");
   const [captchaKey, setCaptchaKey] = useState("");
   const [showSettings, setShowSettings] = useState(false);
@@ -74,12 +75,12 @@ export default function Home() {
     if (clean.length < 30) { setError("Please enter at least 30 characters to provide enough context."); return; }
     setBusy(true); setChecked([]); setError("");
     try {
-      setResult(connection ? await runHybridAnalysis(clean, connection) : analyzeLocally(clean));
+      setResult(connection ? await runHybridAnalysis(clean, connection, allowCloudFallback) : analyzeLocally(clean));
     } catch (err) {
       setError(err instanceof Error ? `Hybrid AI failed: ${err.message}. A labeled basic extraction is shown below.` : "Hybrid AI unavailable.");
       setResult(analyzeLocally(clean));
     } finally { setBusy(false); }
-  }, [text, connection]);
+  }, [text, connection, allowCloudFallback]);
 
   const save = () => {
     if (!result) return;
@@ -141,7 +142,7 @@ export default function Home() {
           {examples.map(s => <button className={selectedExample === s.id ? "example-link chosen" : "example-link"} key={s.id} onClick={() => loadExample(s)}><span>{s.emoji}</span>{s.title}<ChevronRight className="end-icon" size={15}/></button>)}
         </div>
         <div className="side-fill"/>
-        <div className="side-privacy"><span className="privacy-shield"><LockKeyhole size={17}/></span><strong>Built for privacy</strong><p>Your text stays here unless you choose an AI mode that uses the cloud.</p><button onClick={() => setShowSettings(true)}>How it works <ArrowRight size={14}/></button></div>
+        <div className="side-privacy"><span className="privacy-shield"><LockKeyhole size={17}/></span><strong>Built for privacy</strong><p>Basic extraction and on-device AI stay local. Cloud fallback requires your explicit consent.</p><button onClick={() => setShowSettings(true)}>How it works <ArrowRight size={14}/></button></div>
         <div className="profile"><span className="avatar">S</span><span><strong>Guest workspace</strong><small>No account required</small></span><span className="profile-dot"/></div>
       </aside>
       <div className="main-area">
@@ -160,8 +161,9 @@ export default function Home() {
                 <textarea id="source-text" ref={textarea} value={text} maxLength={MAX_CHARS} onChange={e=>{setText(e.target.value);setResult(null);setSelectedExample("");setError("");}} placeholder={"Paste the confusing message here…\n\nFor example: 'Please remit the outstanding balance within 14 days of the invoice date to avoid account suspension.'"} aria-describedby="text-privacy"/>
                 <div className="text-tools"><span>{text.length.toLocaleString()} / {MAX_CHARS.toLocaleString()} characters</span><button onClick={() => upload.current?.click()}><UploadCloud size={15}/> Import text file</button><input ref={upload} type="file" className="sr-only" accept=".txt,.md" onChange={e => {void importFile(e.target.files?.[0]);e.target.value="";}}/></div>
               </div>
-              <p className="privacy-note" id="text-privacy"><ShieldCheck size={17}/>{connection ? "AI may use Google's cloud when on-device inference is unavailable." : "Basic preview is local. Your text isn't sent to an AI service."}</p>
-              <button className="main-cta" onClick={() => void analyze()} disabled={busy || text.trim().length < 30}><WandSparkles size={19}/>{busy ? "Working on it…" : connection ? "Explain with hybrid AI" : "Create a basic explanation"}<ArrowRight className="cta-arrow" size={19}/></button>
+              <p className="privacy-note" id="text-privacy"><ShieldCheck size={17}/>{connection ? (allowCloudFallback ? "Hybrid enabled: if on-device AI is unavailable, your text may be sent to Google's cloud." : "Private-only mode: AI runs on your device, or it reports an error. No cloud fallback.") : "Basic preview is local. Your text isn't sent to an AI service."}</p>
+              {connection && <label className="cloud-fallback-option"><input type="checkbox" checked={allowCloudFallback} onChange={e => {setAllowCloudFallback(e.target.checked);setResult(null);}}/><span><strong>Allow cloud fallback</strong><small>Optional. If local Gemini Nano is unavailable, Firebase may send your text to Google's Gemini service. Turn off for on-device only.</small></span></label>}
+              <button className="main-cta" onClick={() => void analyze()} disabled={busy || text.trim().length < 30}><WandSparkles size={19}/>{busy ? "Working on it…" : connection ? (allowCloudFallback ? "Explain with hybrid AI" : "Explain on-device only") : "Create a basic explanation"}<ArrowRight className="cta-arrow" size={19}/></button>
               {error && <div className="error" role="alert"><CircleAlert size={16}/><span>{error}</span></div>}
               <div className="card-footer"><span><LockKeyhole size={13}/> You control your information</span><button onClick={()=>{setError("");setShowSettings(true);}}>{connection ? "AI settings" : "Enable hybrid AI"} <ChevronRight size={14}/></button></div>
             </section>
@@ -187,7 +189,7 @@ export default function Home() {
         <footer className="footer"><span>© 2026 ClearForm AI · A hackathon prototype by Samer Tallauze</span><span>AI can make mistakes. Always verify important details.</span></footer>
       </div>
       {mobileNav && <button className="nav-overlay" onClick={()=>setMobileNav(false)} aria-label="Close navigation"/>}
-      {showSettings && <div className="modal-overlay" onMouseDown={e=>{if(e.target===e.currentTarget){setShowSettings(false);setError("");}}}><div className="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div className="modal-top"><span className="modal-icon"><Cloud size={22}/></span><button aria-label="Close settings" onClick={()=>{setShowSettings(false);setError("");}}><X size={19}/></button></div><h2 id="modal-title">Connect hybrid AI</h2><p>Bring your own Firebase project to use Firebase AI Logic's on-device-first model with automatic cloud fallback.</p><div className="security-tip"><ShieldCheck size={20}/><span>Firebase web config is public metadata, not a secret. Never paste private credentials. Enable App Check with reCAPTCHA v3 in your Firebase console.</span></div><label htmlFor="firebase-json">Firebase web configuration (JSON)</label><textarea id="firebase-json" rows={6} spellCheck={false} value={configText} onChange={e=>setConfigText(e.target.value)} placeholder={'{\n  "apiKey": "...",\n  "authDomain": "...",\n  "projectId": "...",\n  "appId": "..."\n}'}/><label htmlFor="captcha-key">App Check reCAPTCHA v3 public site key</label><input id="captcha-key" value={captchaKey} onChange={e=>setCaptchaKey(e.target.value)} placeholder="Public site key"/>{error && <div className="error" role="alert"><CircleAlert size={16}/>{error}</div>}<button className="main-cta" onClick={saveConnection}><KeyRound size={18}/> Save Firebase connection <ArrowRight size={17}/></button>{connection && <button className="disconnect" onClick={()=>{setConnection(null);localStorage.removeItem(CONNECTION_KEY);setShowSettings(false);setError("");setResult(null);}}>Disconnect Firebase from this browser</button>}<p className="modal-help">Requires a Firebase AI Logic-enabled project and approved domain. Follow <a target="_blank" rel="noreferrer" href="https://firebase.google.com/docs/ai-logic/hybrid/web/get-started">Google's official setup guide ↗</a>.</p></div></div>}
+      {showSettings && <div className="modal-overlay" onMouseDown={e=>{if(e.target===e.currentTarget){setShowSettings(false);setError("");}}}><div className="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div className="modal-top"><span className="modal-icon"><Cloud size={22}/></span><button aria-label="Close settings" onClick={()=>{setShowSettings(false);setError("");}}><X size={19}/></button></div><h2 id="modal-title">Connect hybrid AI</h2><p>Bring your own Firebase project to run on-device AI. Optional hybrid cloud fallback is disabled until you explicitly enable it.</p><div className="security-tip"><ShieldCheck size={20}/><span>Firebase web config is public metadata, not a secret. Never paste private credentials. Enable App Check with reCAPTCHA v3 in your Firebase console.</span></div><label htmlFor="firebase-json">Firebase web configuration (JSON)</label><textarea id="firebase-json" rows={6} spellCheck={false} value={configText} onChange={e=>setConfigText(e.target.value)} placeholder={'{\n  "apiKey": "...",\n  "authDomain": "...",\n  "projectId": "...",\n  "appId": "..."\n}'}/><label htmlFor="captcha-key">App Check reCAPTCHA v3 public site key</label><input id="captcha-key" value={captchaKey} onChange={e=>setCaptchaKey(e.target.value)} placeholder="Public site key"/>{error && <div className="error" role="alert"><CircleAlert size={16}/>{error}</div>}<button className="main-cta" onClick={saveConnection}><KeyRound size={18}/> Save Firebase connection <ArrowRight size={17}/></button>{connection && <button className="disconnect" onClick={()=>{setConnection(null);setAllowCloudFallback(false);localStorage.removeItem(CONNECTION_KEY);setShowSettings(false);setError("");setResult(null);}}>Disconnect Firebase from this browser</button>}<p className="modal-help">Requires a Firebase AI Logic-enabled project and approved domain. Follow <a target="_blank" rel="noreferrer" href="https://firebase.google.com/docs/ai-logic/hybrid/web/get-started">Google's official setup guide ↗</a>.</p></div></div>}
     </div>
   );
 }

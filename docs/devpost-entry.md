@@ -4,7 +4,8 @@
 **Tagline:** An accessible, privacy-conscious document explainer that can reason on-device and—with permission—fall back to Firebase AI in the cloud.
 **Category:** Web / Chrome Desktop
 **Public repository:** https://github.com/samertall/clearform-ai-hybrid
-**Existing browser preview:** https://clearform-ai-2026.usefulotter1.chatgpt.site
+**Public web deployment (verified HTTP 200):** https://clearform-ai-hybrid-2026-samertalls-projects.vercel.app/
+**Original browser preview:** https://clearform-ai-2026.usefulotter1.chatgpt.site
 **YouTube video:** NOT YET RECORDED — must be a public authentic demonstration of the functioning app.
 
 ## Inspiration
@@ -43,7 +44,7 @@ ClearForm AI existed on November 9, 2026, before the November 11 contest opening
 
 ## What's next / known limitations
 
-The public deployment currently demonstrates the interface and non-AI extraction; it does **not** include a shared Firebase AI Logic configuration. Actual model responses, production App Check, and a full live demonstration have **not** yet been verified. Those items must be completed before final submission, and claims updated to match observed tests.
+The public Vercel deployment (November 17) serves the complete standalone web frontend and its deterministic non-AI extraction. It does **not** include a shared Firebase AI Logic configuration. Actual model responses, production App Check, and a full live demonstration have **not** yet been verified. Those items must be completed before final submission, and claims updated to match observed tests.
 
 ## Built with
 

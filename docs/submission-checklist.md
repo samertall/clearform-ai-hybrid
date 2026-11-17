@@ -10,7 +10,7 @@ Deadline: **December 1, 2026 at 01:00 Asia/Amman** (November 30 at 14:00 PST).
 - [x] User-opt-in cloud fallback and private-only on-device inference options.
 - [x] Original project public at https://github.com/samertall/clearform-ai-hybrid.
 - [x] MIT license, README, Devpost draft, storyboard and judge validation plan.
-- [x] Automated CI workflow created (passing status must still be verified separately).
+- [x] Automated CI workflow created and most recent run verified successful.
 
 ## Blockers before final entry
 
@@ -18,7 +18,7 @@ Deadline: **December 1, 2026 at 01:00 Asia/Amman** (November 30 at 14:00 PST).
 - [ ] Verify that Firebase AI Logic runs locally on a supported Chrome desktop and **reports on-device**.
 - [ ] Verify real cloud fallback and **reports cloud** after user permission.
 - [ ] Ensure judges can run the full AI experience free of charge without creating their own Firebase project.
-- [ ] Confirm TypeScript, unit tests and build are green in GitHub Actions.
+- [x] TypeScript, unit tests and production build passed in GitHub Actions (run 44032455976).
 - [ ] Record an authentic functional demo of **3 minutes or less**, in English, and publish publicly to YouTube.
 - [ ] Create or edit the Devpost project, select **Web/Chrome**, provide repo, demo, video, text, and disclose that the project existed before November 11.
 - [ ] Press final **Submit** in Devpost and check confirmation.

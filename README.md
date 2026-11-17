@@ -6,7 +6,10 @@ ClearForm AI is an accessible, privacy-conscious web app that helps people under
 
 Created November 9, 2026 for the [Google #BuildHybridAI 2026 challenge](https://firebasehybridaihackathon.devpost.com/).
 
-**Public demo:** https://clearform-ai-2026.usefulotter1.chatgpt.site  
+**Public Vercel app:** https://clearform-ai-hybrid-2026-samertalls-projects.vercel.app/  
+**Original preview:** https://clearform-ai-2026.usefulotter1.chatgpt.site  
+**Illustrated project overview (YouTube, 1:47):** https://youtu.be/hwarzgLJ6Ew  
+**Existing Devpost portfolio entry:** https://devpost.com/software/clearform-ai  
 **Source:** https://github.com/samertall/clearform-ai-hybrid
 
 ## Key features
@@ -72,4 +75,4 @@ The original app existed before the official November 11 contest opening. Update
 - [Devpost entry draft](docs/devpost-entry.md)
 - [Two-minute demonstration script](docs/demo-video-script.md)
 
-**Unfinished requirements:** verify actual Firebase inference on-device and in the cloud; configure production App Check for the hosted demo; record a genuine public YouTube video (up to 3 minutes); submit the entry on Devpost by **December 1, 2026 at 01:00 in Amman**.
+**Unfinished requirements:** verify actual Firebase inference on-device and in the cloud; configure production App Check for the hosted demo; record genuine footage of working AI on the target platform (the current YouTube upload is an illustrated product overview); submit the entry on Devpost by **December 1, 2026 at 01:00 in Amman**.

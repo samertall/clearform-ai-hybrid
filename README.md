@@ -11,7 +11,7 @@ Created November 9, 2026 for the [Google #BuildHybridAI 2026 challenge](https://
 
 ## Key features
 
-- Firebase AI Logic hybrid inference with **explicit privacy modes**: ON_DEVICE_ONLY by default; optional PREFER_ON_DEVICE with cloud fallback after the user's consent.
+- Firebase AI Logic hybrid inference with **explicit privacy modes**: ONLY_ON_DEVICE by default; optional PREFER_ON_DEVICE with cloud fallback after the user's consent.
 - Firebase App Check with reCAPTCHA v3 to protect the AI Logic proxy.
 - Transparent output labels: AI on-device, AI cloud, or Basic extraction (not AI).
 - Working no-credential preview extracts literal dates, durations, amounts, action-like sentences, and familiar terms; it does not use AI.

@@ -1,4 +1,4 @@
-# ClearForm AI — Devpost entry (working draft, 2026-11-17)
+# ClearForm AI — Devpost entry (updated 2026-11-17; not yet submitted)
 
 **Project title:** ClearForm AI — Complex information, simply explained
 **Tagline:** An accessible, privacy-conscious document explainer that can reason on-device and—with permission—fall back to Firebase AI in the cloud.
@@ -6,7 +6,8 @@
 **Public repository:** https://github.com/samertall/clearform-ai-hybrid
 **Public web deployment (verified HTTP 200):** https://clearform-ai-hybrid-2026-samertalls-projects.vercel.app/
 **Original browser preview:** https://clearform-ai-2026.usefulotter1.chatgpt.site
-**YouTube video:** NOT YET RECORDED — must be a public authentic demonstration of the functioning app.
+**YouTube video (1:47, illustrated overview):** https://youtu.be/hwarzgLJ6Ew
+**Video limitation:** This is an illustrated product overview with narrated interface concepts, not a screen recording proving real Firebase AI Logic inference. To meet the contest's functional demo expectations, record authentic app footage showing the deployed application and, when possible, actual AI results.
 
 ## Inspiration
 
@@ -32,7 +33,7 @@ A separate local extraction engine supports an offline/non-AI preview. The promp
 
 ## Challenges we encountered
 
-Hybrid inference depends on device support, model downloads, browser settings, App Check and the cloud provider. A confusing fallback could violate user expectations, so we made cloud use an explicit choice. A production judge-ready demo still requires real Firebase configuration and live testing of both inference paths.
+Hybrid inference depends on device support, model downloads, browser settings, App Check and the cloud provider. A confusing fallback could violate user expectations, so we made cloud use an explicit choice. A production judge-ready demo still requires real Firebase configuration and live testing of both inference paths. The public video is an illustrated overview; it must not be represented as verified local/cloud inference footage.
 
 ## What we learned
 
@@ -44,11 +45,23 @@ ClearForm AI existed on November 9, 2026, before the November 11 contest opening
 
 ## What's next / known limitations
 
-The public Vercel deployment (November 17) serves the complete standalone web frontend and its deterministic non-AI extraction. It does **not** include a shared Firebase AI Logic configuration. Actual model responses, production App Check, and a full live demonstration have **not** yet been verified. Those items must be completed before final submission, and claims updated to match observed tests.
+The public Vercel deployment (November 17) serves the complete standalone web frontend and its deterministic non-AI extraction. It does **not** include a shared Firebase AI Logic configuration. Actual model responses, production App Check, and a full live demonstration have **not** yet been verified. Those items must be completed before a truthful fully functional hackathon submission, and claims updated to match observed tests.
 
 ## Built with
 
 React, TypeScript, Vinext, Firebase AI Logic, Firebase App Check, Gemini Nano, Chrome Prompt API, CSS, Lucide.
+
+## Submission fields for Devpost
+
+- **Project name:** ClearForm AI
+- **Elevator pitch:** Explain complex notices with accessible next steps and privacy-first control over on-device versus cloud AI.
+- **Platform:** Web (Chrome)
+- **Repo URL:** https://github.com/samertall/clearform-ai-hybrid
+- **Demo URL:** https://clearform-ai-hybrid-2026-samertalls-projects.vercel.app/
+- **Video URL:** https://youtu.be/hwarzgLJ6Ew
+- **Technologies:** TypeScript, React, Vite, Vinext, CSS, Firebase AI Logic SDK, Firebase App Check, Gemini Nano, Lucide.
+- **Current preview scope:** working user interface and deterministic basic extraction without Firebase credentials; Firebase inference paths require configuration and real-world tests.
+- **Eligibility:** Existing project first created November 9; November 17 modifications detailed above.
 
 ## AI use disclosure
 

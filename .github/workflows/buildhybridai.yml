@@ -27,3 +27,9 @@ jobs:
         run: pnpm exec tsc --noEmit
       - name: Production build
         run: pnpm build
+      - name: Install standalone Vite web dependencies
+        working-directory: web
+        run: npm install --no-audit --no-fund
+      - name: Type check and build Vite web app
+        working-directory: web
+        run: npm run build

@@ -53,9 +53,10 @@ Describe changes dated after November 11 in the Devpost submission rather than c
 - [x] Consent gate and acceptance test documentation
 - [ ] App Check connected to actual live Firebase service
 - [ ] Both local and cloud inference successfully exercised and documented
-- [ ] CI passes
-- [ ] An authentic public YouTube video of working app (3 minutes or less)
-- [ ] Final Devpost submission completed before deadline
+- [x] CI passes for the core application and standalone web build (verified November 17).
+- [x] 1:47 illustrated YouTube project overview published: https://youtu.be/hwarzgLJ6Ew
+- [ ] Actual footage of on-device/cloud Firebase AI Logic inference recorded; the existing illustrated video alone is not a verified functional demonstration.
+- [ ] Devpost portfolio project at https://devpost.com/software/clearform-ai associated with #BuildHybridAI 2026 via contest entry, and final submission completed before deadline.
 
 ## References
 

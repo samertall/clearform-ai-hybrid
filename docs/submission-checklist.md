@@ -10,6 +10,7 @@ Deadline: **December 1, 2026 at 01:00 Asia/Amman** (November 30 at 14:00 PST).
 - [x] User-opt-in cloud fallback and private-only on-device inference options.
 - [x] Original project public at https://github.com/samertall/clearform-ai-hybrid.
 - [x] MIT license, README, Devpost draft, storyboard and judge validation plan.
+- [x] Public Vercel frontend deployed and HTTP 200 verified: https://clearform-ai-hybrid-2026-samertalls-projects.vercel.app/
 - [x] Automated CI workflow created and most recent run verified successful.
 
 ## Blockers before final entry
@@ -20,7 +21,7 @@ Deadline: **December 1, 2026 at 01:00 Asia/Amman** (November 30 at 14:00 PST).
 - [ ] Ensure judges can run the full AI experience free of charge without creating their own Firebase project.
 - [x] TypeScript, unit tests and production build passed in GitHub Actions (run 44032455976).
 - [ ] Record an authentic functional demo of **3 minutes or less**, in English, and publish publicly to YouTube.
-- [ ] Create or edit the Devpost project, select **Web/Chrome**, provide repo, demo, video, text, and disclose that the project existed before November 11.
+- [ ] Create or edit the Devpost project, select **Web/Chrome**, provide public frontend URL, repo, actual Firebase-enabled demo, YouTube video, text, and disclose that the project existed before November 11.
 - [ ] Press final **Submit** in Devpost and check confirmation.
 
 ## Rule-specific notes

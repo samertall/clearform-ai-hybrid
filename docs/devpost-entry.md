@@ -3,6 +3,8 @@
 **Project title:** ClearForm AI — Complex information, simply explained
 **Tagline:** An accessible, privacy-conscious document explainer that can reason on-device and—with permission—fall back to Firebase AI in the cloud.
 **Category:** Web / Chrome Desktop
+**Existing Devpost portfolio project (IceHacks):** https://devpost.com/software/clearform-ai
+**Entry method for #BuildHybridAI:** use **Import from portfolio** to link the existing project to the new hackathon, then complete required fields and click Submit project.
 **Public repository:** https://github.com/samertall/clearform-ai-hybrid
 **Public web deployment (verified HTTP 200):** https://clearform-ai-hybrid-2026-samertalls-projects.vercel.app/
 **Original browser preview:** https://clearform-ai-2026.usefulotter1.chatgpt.site
@@ -57,6 +59,7 @@ React, TypeScript, Vinext, Firebase AI Logic, Firebase App Check, Gemini Nano, C
 - **Elevator pitch:** Explain complex notices with accessible next steps and privacy-first control over on-device versus cloud AI.
 - **Platform:** Web (Chrome)
 - **Repo URL:** https://github.com/samertall/clearform-ai-hybrid
+- **Existing Devpost project:** https://devpost.com/software/clearform-ai
 - **Demo URL:** https://clearform-ai-hybrid-2026-samertalls-projects.vercel.app/
 - **Video URL:** https://youtu.be/hwarzgLJ6Ew
 - **Technologies:** TypeScript, React, Vite, Vinext, CSS, Firebase AI Logic SDK, Firebase App Check, Gemini Nano, Lucide.
